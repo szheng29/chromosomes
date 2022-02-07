@@ -20,7 +20,7 @@
 #' df3 <- rbind(df1,df2)
 #' plot3dChromosomes(df3)
 
-plot3dChromosomes <- function(coords) {
+plot3dChromosomes <- function(coords, type = 's', col = 'grey95',...) {
     app = shinyApp(
         ui <- bootstrapPage(
             rglwidgetOutput("rglPlot")
@@ -31,8 +31,8 @@ plot3dChromosomes <- function(coords) {
                 try(close3d(), silent = TRUE)
                 bg3d(col = "white")
                 with(coords, plot3d(x, y, z, 
-                                    type = "s",
-                                    col = as.factor(chr)))
+                                    type = type,
+                                    col = col, ...))
                 axes3d()
                 rglwidget()
             })
